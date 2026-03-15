@@ -12,3 +12,5 @@ test sound with:
 aplay -D plughw:1,0 /usr/share/sounds/alsa/Front_Center.wav
 
 Njoy!
+
+credits: https://hackersvanguard.com/max98357a-for-radza-zero-3-giving-skelly-a-voice-with-i2s-and-gpio/
