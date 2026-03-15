@@ -6,10 +6,12 @@
 6. run sudo reboot now
 
 check whether the Hifiberry is seen:
+
 aplay -l
 
-test sound with: 
-aplay -D plughw:1,0 /usr/share/sounds/alsa/Front_Center.wav
+test sound with:
+
+aplay -D plughw:sndrpihifiberry /usr/share/sounds/alsa/Front_Center.wav
 
 Njoy!
 
