@@ -1,0 +1,44 @@
+/dts-v1/;
+/plugin/;
+/ {
+	metadata {
+		title = "Enable HiFiBerry DAC+ Zero on I2S3-M0";
+		compatible = "radxa,zero3";
+		category = "audio";
+		description = "Enable HiFiBerry DAC+ Zero on I2S3-M0.";
+		exclusive = "GPIO3_A5", "GPIO3_A6", "GPIO3_A2", "GPIO3_A3", "GPIO3_A4", "i2s3_2ch";
+	};
+};
+
+&{/} {
+	pcm5102a_codec: pcm5102a-codec {
+		compatible = "ti,pcm5102a";
+		#sound-dai-cells = <0>;
+		status = "okay";
+	};
+
+	sound_ext_card: sound-ext-card {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "okay";
+		compatible = "simple-audio-card";
+		simple-audio-card,format = "i2s";
+		simple-audio-card,mclk-fs = <256>;
+		simple-audio-card,name = "snd_rpi_hifiberry_dac";
+		simple-audio-card,dai-link@0 {
+			reg = <0>;
+			format = "i2s";
+			cpu {
+				sound-dai = <&i2s3_2ch>;
+			};
+			codec {
+				sound-dai = <&pcm5102a_codec>;
+			};
+		};
+	};
+};
+
+&i2s3_2ch {
+	pinctrl-0 = <&i2s3m0_lrck &i2s3m0_sclk &i2s3m0_sdi &i2s3m0_sdo>;
+	status = "okay";
+};
